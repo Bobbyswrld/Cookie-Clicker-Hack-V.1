@@ -1,0 +1,38 @@
+// Auto-clicks the big cookie every 1ms
+let autoClicker = setInterval(() => {
+    document.getElementById("bigCookie").click();
+}, 1);
+
+// Auto-clicks golden cookies every 100ms
+let autoGoldenClicker = setInterval(() => {
+    let goldenCookie = document.querySelector(".shimmer"); // Finds golden cookies
+    if (goldenCookie) {
+        goldenCookie.click();
+    }
+}, 100);
+
+// Auto-buys the best affordable buildings every 1 second
+let autoBuyer = setInterval(() => {
+    let items = document.querySelectorAll(".product.unlocked"); // Get all unlocked buildings
+    items = Array.from(items).reverse(); // Prioritize expensive buildings first
+    for (let item of items) {
+        item.click();
+    }
+}, 1000);
+
+// Auto-buys upgrades every 1 second
+let autoUpgrade = setInterval(() => {
+    let upgrades = document.querySelectorAll(".upgrade.enabled"); // Find available upgrades
+    for (let upgrade of upgrades) {
+        upgrade.click();
+    }
+}, 1000);
+
+// Function to stop all auto scripts
+function stopAutoClickers() {
+    clearInterval(autoClicker);
+    clearInterval(autoGoldenClicker);
+    clearInterval(autoBuyer);
+    clearInterval(autoUpgrade);
+    console.log("Auto-clickers and auto-buyers stopped.");
+}
